@@ -1,250 +1,31 @@
-# -..<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>I'm Sorry Ritu ❤️</title>
-
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>I'm Sorry Ritu</title>
 <style>
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-}
-
-body{
-overflow:hidden;
-font-family:Arial,sans-serif;
-height:100vh;
-display:flex;
-justify-content:center;
-align-items:center;
-background:linear-gradient(#05071c,#15153d,#3f0f3d);
-}
-
-canvas{
-position:fixed;
-top:0;
-left:0;
-z-index:0;
-}
-
-.card{
-position:relative;
-z-index:5;
-width:90%;
-max-width:600px;
-padding:30px;
-border-radius:25px;
-text-align:center;
-background:rgba(255,255,255,.12);
-backdrop-filter:blur(12px);
-box-shadow:0 0 30px hotpink;
-}
-
-.cat{
-font-size:95px;
-animation:bounce 2s infinite;
-}
-
-h1{
-color:white;
-font-size:50px;
-margin-top:10px;
-text-shadow:0 0 20px deeppink;
-}
-
-p{
-color:white;
-font-size:22px;
-margin-top:15px;
-line-height:1.6;
-}
-
-button{
-margin-top:25px;
-padding:15px 35px;
-border:none;
-border-radius:40px;
-font-size:20px;
-background:#ff4f8b;
-color:white;
-cursor:pointer;
-box-shadow:0 0 20px hotpink;
-transition:.3s;
-}
-
-button:hover{
-transform:scale(1.08);
-}
-
-#letter{
-display:none;
-margin-top:20px;
-color:white;
-font-size:19px;
-line-height:1.8;
-animation:fade 2s;
-}
-
-@keyframes fade{
-from{opacity:0;}
-to{opacity:1;}
-}
-
-@keyframes bounce{
-50%{
-transform:translateY(-10px);
-}
-}
-
-.float{
-position:absolute;
-font-size:28px;
-animation:up linear infinite;
-}
-
-@keyframes up{
-from{
-transform:translateY(100vh);
-opacity:1;
-}
-to{
-transform:translateY(-100px);
-opacity:0;
-}
-}
-
-.heart{
-display:inline-block;
-animation:beat 1s infinite;
-}
-
-@keyframes beat{
-50%{
-transform:scale(1.3);
-}
-}
-</style>
-
-</head>
-
+body{margin:0;overflow:hidden;display:flex;justify-content:center;align-items:center;height:100vh;background:linear-gradient(#05071c,#15153d,#3f0f3d);font-family:Arial}
+.card{background:rgba(255,255,255,.12);backdrop-filter:blur(10px);padding:30px;border-radius:20px;text-align:center;color:#fff;z-index:2}
+.float{position:absolute;animation:up linear infinite}@keyframes up{from{transform:translateY(100vh)}to{transform:translateY(-100px);opacity:0}}
+</style></head>
 <body>
-
-<canvas id="stars"></canvas>
-
 <div class="card">
-
-<div class="cat">🥺🐱</div>
-
-<h1>I'm Sorry Ritu <span class="heart">❤️</span></h1>
-
-<p id="typing"></p>
-
-<button onclick="showLetter()">
-💖 Forgive Me 💖
-</button>
-
-<div id="letter">
-No matter how many stars shine tonight,<br>
-my favorite light will always be your smile.<br><br>
-
-I'm truly sorry, Ritu... 🥺❤️<br><br>
-
-If I ever hurt you, it was never my intention.
-You mean more to me than words can express.
-I hope one day you'll smile at me again. 🌹
+<div style="font-size:90px">🥺🐱</div>
+<h1>I'm Sorry Ritu ❤️</h1>
+<p>Every heartbeat whispers your name... Please forgive me.</p>
+<button onclick="document.getElementById('letter').style.display='block'">💖 Forgive Me 💖</button>
+<div id="letter" style="display:none;margin-top:15px">I'm truly sorry, Ritu. You mean more to me than words can express. 🌹</div>
 </div>
-
-</div>
-
 <audio id="music" loop>
 <source src="roi - videoclub instrumental (slowed version)-1856126830.mp3" type="audio/mpeg">
 </audio>
-
 <script>
-
-document.body.addEventListener("click",()=>{
-document.getElementById("music").play();
-},{once:true});
-
-const txt="Every heartbeat whispers your name... Please forgive me ❤️";
-let i=0;
-
-function type(){
-if(i<txt.length){
-document.getElementById("typing").innerHTML+=txt.charAt(i);
-i++;
-setTimeout(type,70);
-}
-}
-type();
-
-function showLetter(){
-document.getElementById("letter").style.display="block";
-}
-
-function emoji(){
-const e=document.createElement("div");
-e.className="float";
-
-const arr=["❤️","🌹","✨","💖","🌸","💗"];
-
-e.innerHTML=arr[Math.floor(Math.random()*arr.length)];
-
+document.body.addEventListener("click",()=>music.play(),{once:true});
+setInterval(()=>{
+let e=document.createElement("div");e.className="float";
+e.innerHTML=["❤️","🌹","✨","💖"][Math.floor(Math.random()*4)];
 e.style.left=Math.random()*100+"vw";
-e.style.animationDuration=(5+Math.random()*4)+"s";
-e.style.fontSize=(20+Math.random()*30)+"px";
-
+e.style.fontSize=(20+Math.random()*20)+"px";
+e.style.animationDuration=(4+Math.random()*4)+"s";
 document.body.appendChild(e);
-
-setTimeout(()=>{
-e.remove();
-},9000);
-}
-
-setInterval(emoji,250);
-
-const canvas=document.getElementById("stars");
-const ctx=canvas.getContext("2d");
-
-canvas.width=window.innerWidth;
-canvas.height=window.innerHeight;
-
-let stars=[];
-
-for(let i=0;i<150;i++){
-stars.push({
-x:Math.random()*canvas.width,
-y:Math.random()*canvas.height,
-r:Math.random()*2
-});
-}
-
-function draw(){
-ctx.clearRect(0,0,canvas.width,canvas.height);
-
-ctx.fillStyle="white";
-
-for(let s of stars){
-ctx.beginPath();
-ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
-ctx.fill();
-
-s.y+=0.2;
-
-if(s.y>canvas.height){
-s.y=0;
-s.x=Math.random()*canvas.width;
-}
-}
-
-requestAnimationFrame(draw);
-}
-
-draw();
-
+setTimeout(()=>e.remove(),8000);
+},250);
 </script>
-
-</body>
-</html>
+</body></html>
